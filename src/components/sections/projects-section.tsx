@@ -11,7 +11,7 @@ import { ProjectOverlay } from '../project-overlay';
 import { cn } from '@/lib/utils';
 import { Skeleton } from '../ui/skeleton';
 import { toggleLike } from '@/lib/likes';
-import { trackProjectView, toggleProjectLike } from '@/lib/firebase/stats';
+import { trackProjectView, toggleProjectLike } from '@/lib/supabase/stats';
 
 const filters = ['All', 'Web Development', 'App Development', 'Newly Added'];
 

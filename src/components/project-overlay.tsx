@@ -1,6 +1,7 @@
 'use client';
 
-import { Dialog, DialogContent, DialogClose } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import type { Project, ProjectComment } from '@/types';
 import Image from 'next/image';
 import { Button } from './ui/button';
@@ -86,6 +87,10 @@ export function ProjectOverlay({ project, onClose }: ProjectOverlayProps) {
   return (
     <Dialog open={!!project} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent className="bg-background/95 backdrop-blur-xl text-foreground p-0 w-[95vw] h-[95vh] max-w-6xl flex flex-col md:flex-row data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 rounded-[25px] overflow-hidden shadow-2xl">
+        <VisuallyHidden>
+          <DialogTitle>{project.title}</DialogTitle>
+          <DialogDescription>{project.description}</DialogDescription>
+        </VisuallyHidden>
         {/* Media Section */}
         <div className="w-full md:w-2/5 h-3/4 md:h-full bg-black flex items-center justify-center relative md:rounded-l-3xl overflow-hidden group overlay-media">
           {project.type === 'image' ? (

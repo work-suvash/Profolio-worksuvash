@@ -12,37 +12,37 @@ export default function AnimatedSection({ children, animation }: AnimatedSection
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const show = () => setIsVisible(true);
+
+    // Always show content after a short delay as a fallback (covers iframe/embedded contexts)
+    const fallback = setTimeout(show, 300);
+
     // Disable animations on low-end devices or data saver mode
-    const isLowPowerMode = 'connection' in navigator && 
-      ((navigator as any).connection.saveData || (navigator as any).connection.effectiveType === '2g');
-    
+    const isLowPowerMode = 'connection' in navigator &&
+      ((navigator as any).connection?.saveData || (navigator as any).connection?.effectiveType === '2g');
+
     if (isLowPowerMode || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setIsVisible(true);
+      show();
+      clearTimeout(fallback);
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (ref.current) {
-            observer.unobserve(ref.current);
-          }
+          show();
+          clearTimeout(fallback);
+          if (ref.current) observer.unobserve(ref.current);
         }
       },
-      {
-        threshold: 0.1,
-      }
+      { threshold: 0, rootMargin: '0px 0px -10px 0px' }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    if (ref.current) observer.observe(ref.current);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      clearTimeout(fallback);
+      if (ref.current) observer.unobserve(ref.current);
     };
   }, []);
 

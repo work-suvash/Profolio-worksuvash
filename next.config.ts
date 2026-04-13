@@ -30,11 +30,23 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'ovsdyzkolzszzxzkzkhu.supabase.co',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   compress: true,
   poweredByHeader: false,
-  allowedDevOrigins: ['*'],
+  devIndicators: false,
+  allowedDevOrigins: [
+    '*.replit.dev',
+    '*.riker.replit.dev',
+    '*.sisko.replit.dev',
+    '*.repl.co',
+  ],
 };
 
 export default nextConfig;

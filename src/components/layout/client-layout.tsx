@@ -9,7 +9,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 800); 
+    }, 400); 
     return () => clearTimeout(timer);
   }, []);
 

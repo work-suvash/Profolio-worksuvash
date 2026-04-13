@@ -33,13 +33,16 @@ export default function ContactSection() {
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            const { addDoc, collection, serverTimestamp } = await import('firebase/firestore');
-            const { db } = await import('@/lib/firebase/config');
-            
-            await addDoc(collection(db, 'messages'), {
-                ...values,
-                createdAt: serverTimestamp(),
+            const { supabase } = await import('@/lib/supabase/client');
+            if (!supabase) throw new Error('Database is not configured. Please set Supabase environment variables.');
+            const { error } = await supabase.from('contact_messages').insert({
+                first_name: values.firstName,
+                last_name: values.lastName,
+                phone: values.phone,
+                service: values.service,
+                message: values.message,
             });
+            if (error) throw error;
 
             toast({
                 title: "Message Sent!",
