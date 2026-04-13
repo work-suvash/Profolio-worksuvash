@@ -6,14 +6,13 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA8cbY90d8WuL-FizlJQf2vGqurY-7D55Y",
-  authDomain: "portfolio-worksuvash.firebaseapp.com",
-  databaseURL: "https://portfolio-worksuvash-default-rtdb.firebaseio.com",
-  projectId: "portfolio-worksuvash",
-  storageBucket: "portfolio-worksuvash.firebasestorage.app",
-  messagingSenderId: "1063967192596",
-  appId: "1:1063967192596:web:54cf373d0197a1b1ca5901",
-  measurementId: "G-62H65Y0H61"
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
 };
 
 // Initialize Firebase
