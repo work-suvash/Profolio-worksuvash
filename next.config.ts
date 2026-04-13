@@ -45,6 +45,7 @@ const nextConfig: NextConfig = {
     '*.replit.dev',
     '*.riker.replit.dev',
     '*.sisko.replit.dev',
+    '*.janeway.replit.dev',
     '*.repl.co',
   ],
 };
